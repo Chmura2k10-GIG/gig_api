@@ -1,2 +1,0 @@
-class MusicGenre < ApplicationRecord
-end

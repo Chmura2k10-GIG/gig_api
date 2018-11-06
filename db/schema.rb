@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_11_05_231830) do
+ActiveRecord::Schema.define(version: 2018_11_06_182933) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -62,12 +62,6 @@ ActiveRecord::Schema.define(version: 2018_11_05_231830) do
     t.index ["user_id"], name: "index_messages_on_user_id"
   end
 
-  create_table "music_genres", force: :cascade do |t|
-    t.string "name"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
   create_table "roles", force: :cascade do |t|
     t.string "name"
     t.bigint "user_id"
@@ -104,6 +98,15 @@ ActiveRecord::Schema.define(version: 2018_11_05_231830) do
     t.index ["user_id"], name: "index_user_events_on_user_id"
   end
 
+  create_table "user_genres", force: :cascade do |t|
+    t.bigint "user_id"
+    t.bigint "genre_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["genre_id"], name: "index_user_genres_on_genre_id"
+    t.index ["user_id"], name: "index_user_genres_on_user_id"
+  end
+
   create_table "user_instruments", force: :cascade do |t|
     t.bigint "user_id"
     t.bigint "instrument_id"
@@ -111,15 +114,6 @@ ActiveRecord::Schema.define(version: 2018_11_05_231830) do
     t.datetime "updated_at", null: false
     t.index ["instrument_id"], name: "index_user_instruments_on_instrument_id"
     t.index ["user_id"], name: "index_user_instruments_on_user_id"
-  end
-
-  create_table "user_music_genres", force: :cascade do |t|
-    t.bigint "user_id"
-    t.bigint "music_genre_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["music_genre_id"], name: "index_user_music_genres_on_music_genre_id"
-    t.index ["user_id"], name: "index_user_music_genres_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -144,8 +138,8 @@ ActiveRecord::Schema.define(version: 2018_11_05_231830) do
   add_foreign_key "user_bands", "users"
   add_foreign_key "user_events", "events"
   add_foreign_key "user_events", "users"
+  add_foreign_key "user_genres", "genres"
+  add_foreign_key "user_genres", "users"
   add_foreign_key "user_instruments", "instruments"
   add_foreign_key "user_instruments", "users"
-  add_foreign_key "user_music_genres", "music_genres"
-  add_foreign_key "user_music_genres", "users"
 end

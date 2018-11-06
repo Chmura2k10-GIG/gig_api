@@ -1,4 +1,4 @@
 class UserGenre < ApplicationRecord
-  belongs_to :User
-  belongs_to :Genre
+  belongs_to :user
+  belongs_to :genre
 end

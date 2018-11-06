@@ -1,10 +1,11 @@
 class UsersController < ApplicationController
-  before_action :authenticate_user,  only: [:index, :current, :update]
+  before_action :authenticate_user,  only: [:current, :update]
   before_action :authorize_as_admin, only: [:destroy]
   before_action :authorize,          only: [:update]
   
   def index
-    render json: {status: 200, msg: 'Logged-in'}
+    @users = User.filter_by(filter_users_params)
+    render json: @users
   end
   
   def current
@@ -36,6 +37,10 @@ class UsersController < ApplicationController
 
     def user_params
       params.require(:user).permit(:login, :email, :password, :city, :firstname, :lastname, :avatar, :age)
+    end
+
+    def filter_users_params
+      params.permit(:city, :genre)
     end
     
     def authorize

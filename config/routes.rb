@@ -7,6 +7,8 @@ Rails.application.routes.draw do
   post   '/users/create'   => 'users#create'
   patch  '/user/:id'       => 'users#update'
   delete '/user/:id'       => 'users#destroy'
+  get '/users/:id/instruments' => 'instruments#user_instruments'
+  patch '/users/:id/instruments' => 'instruments#update_instruments_list'
 
   get '/instruments'       => 'instruments#index'
   get '/genres'            => 'genres#index'

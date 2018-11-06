@@ -2,7 +2,7 @@ class User < ApplicationRecord
     
   has_secure_password
   has_many :messages
-  has_and_belongs_to_many :instruments
+  has_and_belongs_to_many :instruments, :join_table => :user_instruments 
   has_and_belongs_to_many :genres, :join_table => :user_genres  
   has_and_belongs_to_many :bands 
   has_and_belongs_to_many :events

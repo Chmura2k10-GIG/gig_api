@@ -16,15 +16,19 @@ instruments_list = [
   ["Keyboard", "https://cdn3.iconfinder.com/data/icons/musical-instruments-18/100/instruments_keyboard-512.png"]
 ]
 
-# genres_list = [
-#   "Metal","Rock","Hard-Rock","Jazz","Blues","Rap","Pop","Country","Electro"
-# ]
+genres_list = [
+  "Metal","Rock","Hard-Rock","Jazz","Blues","Rap","Pop","Country","Electro"
+]
+
+User.create(login:"test1", password:"testtesttest", email:"test@test1.pl", city:"Warszawa")
+User.create(login:"test2", password:"testtesttest", email:"test@test2.pl", city: "Warszawa")
+User.create(login:"test3", password:"testtesttest", email:"test@test3.pl", city: "Gdańsk")
 
 instruments_list.each do |name, avatar|
   Instrument.create(name:name,avatar:avatar)
 end
 
-# genres_list.each do |name|
-#   Genre.create(name:name)
-# end
+genres_list.each do |name|
+  Genre.create(name:name)
+end
 
